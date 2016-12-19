@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title_ru: MyString
+  title_en: MyString
+  title_de: MyString
+  sofa_score_slug: MyString
+  sofa_score_id: 1
+
+two:
+  title_ru: MyString
+  title_en: MyString
+  title_de: MyString
+  sofa_score_slug: MyString
+  sofa_score_id: 1

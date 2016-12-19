@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title_ru: MyString
+  title_en: MyString
+  title_de: MyString
+  capacity: 1
+  city: MyString
+
+two:
+  title_ru: MyString
+  title_en: MyString
+  title_de: MyString
+  capacity: 1
+  city: MyString

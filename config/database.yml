@@ -1,0 +1,18 @@
+development:
+  adapter: postgresql
+  host: localhost
+  username: postgres
+  password: postgres
+  database: scores_api
+  schema_search_path: public
+  encoding: utf8
+  pool: 25
+
+test:
+  adapter: postgresql
+  host: localhost
+  username: postgres
+  password: postgres
+  database: scores_api_test
+  schema_search_path: public
+  encoding: utf8

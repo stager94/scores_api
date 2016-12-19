@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title_ru: MyString
+  title_en: MyString
+  title_de: MyString
+  full_title_ru: MyString
+  full_title_en: MyString
+  full_title_de: MyString
+  sofa_score_slug: MyString
+  sofa_score_id: 1
+  stadium_id: 
+  city: MyString
+  country: MyString
+
+two:
+  title_ru: MyString
+  title_en: MyString
+  title_de: MyString
+  full_title_ru: MyString
+  full_title_en: MyString
+  full_title_de: MyString
+  sofa_score_slug: MyString
+  sofa_score_id: 1
+  stadium_id: 
+  city: MyString
+  country: MyString
