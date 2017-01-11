@@ -39,8 +39,8 @@ gem 'counter_culture', '~> 0.1.33'
 
 gem 'sinatra'
 gem 'sidekiq', '3.4.2'
-gem 'sidetiq', '0.5.0'
-gem 'ice_cube', '0.11.1'
+gem 'sidetiq', '0.6.0'
+gem 'ice_cube', '0.12.0'
 
 gem 'pg_search'
 gem 'active_model_serializers', '~> 0.10.0'
