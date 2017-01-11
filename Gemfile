@@ -64,7 +64,7 @@ group :development, :test do
   gem 'rvm1-capistrano3'
   gem 'capistrano3-unicorn'
   gem 'capistrano-sidekiq'
-
+  gem 'capistrano-rails-collection'
   # gem 'capistrano', '2.14.2'
   # gem 'rvm-capistrano', '1.4.1', require: false
   # gem 'capistrano_colors', '0.5.4', require: false
