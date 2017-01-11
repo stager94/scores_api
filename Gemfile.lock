@@ -99,6 +99,9 @@ GEM
     capistrano-rails (1.2.2)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capistrano-sidekiq (0.10.0)
       capistrano
       sidekiq (>= 3.4)
@@ -361,6 +364,7 @@ DEPENDENCIES
   capistrano (~> 3.0)
   capistrano-bundler
   capistrano-rails
+  capistrano-rvm
   capistrano-sidekiq
   capistrano3-unicorn
   coffee-rails (~> 4.1.0)
