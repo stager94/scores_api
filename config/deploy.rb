@@ -18,7 +18,7 @@ after 'deploy:finishing', 'deploy:cleanup'
 
 namespace :deploy do
   task :restart do
-    invoke 'faye:restart'
+    # invoke 'faye:restart'
     invoke 'unicorn:restart'
   end
 
