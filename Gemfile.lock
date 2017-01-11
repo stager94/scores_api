@@ -150,7 +150,6 @@ GEM
     hitimes (1.2.4)
     i18n (0.7.0)
     i18n_data (0.7.0)
-    ice_cube (0.12.0)
     iconv (1.0.4)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -287,10 +286,6 @@ GEM
       json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
       redis-namespace (~> 1.5, >= 1.5.2)
-    sidetiq (0.6.0)
-      celluloid (>= 0.14.1)
-      ice_cube (~> 0.12.0)
-      sidekiq (>= 2.16.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -364,7 +359,6 @@ DEPENDENCIES
   countries
   devise
   haml
-  ice_cube (= 0.12.0)
   iconv
   jbuilder (~> 2.0)
   jquery-rails
@@ -379,8 +373,6 @@ DEPENDENCIES
   rvm1-capistrano3
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  sidekiq (= 3.4.2)
-  sidetiq (= 0.6.0)
   sinatra
   spring
   therubyracer
