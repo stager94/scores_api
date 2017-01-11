@@ -37,13 +37,13 @@ gem 'pry'
 gem 'counter_culture', '~> 0.1.33'
 
 gem 'sinatra'
-gem 'sidekiq', '3.4.2'
-gem 'sidetiq', '0.5.0'
-gem 'ice_cube', '0.11.1'
+gem 'sidekiq', '4.1.0'
+gem 'sidetiq', github: 'tobiassvn/sidetiq'
 
 gem 'pg_search'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'countries'
+gem 'iconv'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,3 +55,21 @@ group :development do
   gem 'spring'
 end
 
+group :development, :test do
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'rvm1-capistrano3'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-sidekiq'
+
+  # gem 'capistrano', '2.14.2'
+  # gem 'rvm-capistrano', '1.4.1', require: false
+  # gem 'capistrano_colors', '0.5.4', require: false
+  # gem 'capistrano-ext', '1.2.1', require: false
+  gem "letter_opener"
+end
+
+group :production do
+  gem 'unicorn', '4.8.2'
+end
