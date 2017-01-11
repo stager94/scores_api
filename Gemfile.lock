@@ -17,15 +17,6 @@ GIT
       sass-rails
       sprockets (< 4.1)
 
-GIT
-  remote: git://github.com/tobiassvn/sidetiq.git
-  revision: 2ea3c60a624f16bdf99ce5b6bd8451d000b4452b
-  specs:
-    sidetiq (0.7.2)
-      celluloid (>= 0.17.3)
-      ice_cube (~> 0.14.0)
-      sidekiq (>= 4.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,23 +100,8 @@ GEM
       sidekiq (>= 3.4)
     capistrano3-unicorn (0.2.1)
       capistrano (~> 3.1, >= 3.1.0)
-    celluloid (0.17.3)
-      celluloid-essentials
-      celluloid-extras
-      celluloid-fsm
-      celluloid-pool
-      celluloid-supervision
-      timers (>= 4.1.1)
-    celluloid-essentials (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-extras (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-fsm (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-pool (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-supervision (0.20.6)
-      timers (>= 4.1.1)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
@@ -141,7 +117,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonwatir (4.0.0)
-    concurrent-ruby (1.0.3)
+    concurrent-ruby (1.0.4)
     connection_pool (2.2.1)
     counter_culture (0.1.34)
       activerecord (>= 3.0.0)
@@ -174,7 +150,7 @@ GEM
     hitimes (1.2.4)
     i18n (0.7.0)
     i18n_data (0.7.0)
-    ice_cube (0.14.0)
+    ice_cube (0.11.1)
     iconv (1.0.4)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -280,6 +256,8 @@ GEM
       polyamorous (~> 1.3)
     rdoc (4.3.0)
     redis (3.3.2)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
@@ -303,10 +281,16 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    sidekiq (4.1.0)
-      concurrent-ruby (~> 1.0)
+    sidekiq (3.4.2)
+      celluloid (~> 0.16.0)
       connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
+      redis-namespace (~> 1.5, >= 1.5.2)
+    sidetiq (0.5.0)
+      celluloid (>= 0.14.1)
+      ice_cube (~> 0.11.0)
+      sidekiq (>= 2.16.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -331,7 +315,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.5)
-    timers (4.1.2)
+    timers (4.0.4)
       hitimes
     traco (3.2.1)
       activerecord (>= 3.0)
@@ -380,6 +364,7 @@ DEPENDENCIES
   countries
   devise
   haml
+  ice_cube (= 0.11.1)
   iconv
   jbuilder (~> 2.0)
   jquery-rails
@@ -394,8 +379,8 @@ DEPENDENCIES
   rvm1-capistrano3
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  sidekiq (= 4.1.0)
-  sidetiq!
+  sidekiq (= 3.4.2)
+  sidetiq (= 0.5.0)
   sinatra
   spring
   therubyracer
