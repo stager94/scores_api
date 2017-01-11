@@ -3,6 +3,7 @@ set :deploy_user, 'root'
 
 set :scm, :git
 set :repo_url, 'git@github.com:stager94/scores_api.git'
+set :bundle_binstubs, nil
 
 set :keep_releases, 5
 set :linked_files, %w{config/database.yml config/unicorn.rb}
