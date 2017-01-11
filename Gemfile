@@ -57,14 +57,14 @@ group :development do
 end
 
 group :development, :test do
-  gem 'capistrano', '~> 3.0'
+  gem 'capistrano', '~> 3.0',     require: false
   gem 'capistrano-rvm',     require: false
-  gem 'capistrano-rails'
-  gem 'capistrano-bundler'
-  gem 'rvm1-capistrano3'
-  gem 'capistrano3-unicorn'
-  gem 'capistrano-sidekiq'
-  gem 'capistrano-rails-collection'
+  gem 'capistrano-rails',     require: false
+  gem 'capistrano-bundler',     require: false
+  gem 'rvm1-capistrano3',     require: false
+  gem 'capistrano3-unicorn',     require: false
+  gem 'capistrano-sidekiq',     require: false
+  gem 'capistrano-rails-collection',     require: false
   # gem 'capistrano', '2.14.2'
   # gem 'rvm-capistrano', '1.4.1', require: false
   # gem 'capistrano_colors', '0.5.4', require: false
