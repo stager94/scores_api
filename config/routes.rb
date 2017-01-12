@@ -13,6 +13,14 @@ Rails.application.routes.draw do
         get :find, on: :collection
       end
 
+      resources :competitions do
+        get :find, on: :collection
+      end
+
+      resources :events do
+        get :find, on: :collection
+      end
+
       # resources :events
 
     end

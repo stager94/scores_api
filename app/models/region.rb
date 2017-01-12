@@ -1,4 +1,6 @@
 class Region < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :search_for, against: :title_en, using: :trigram
 
 	translates :title
 

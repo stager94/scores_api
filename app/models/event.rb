@@ -5,10 +5,18 @@ class Event < ActiveRecord::Base
   belongs_to :competition
   belongs_to :season
 
+  belongs_to :venue
+  belongs_to :referee
+
   has_many :incidents, dependent: :destroy
 
   # scope :live, -> { includes(:status).where("started_at > ? AND statuses.type NOT IN ('finished', '')", Time.now) }
-  scope :today, ->{ where('date(started_at) = ?', Date.today) }
+  scope :today, ->{ by_date(Date.today) }
+
+  scope :by_datetime, ->(time) { where started_at: time }
+  scope :by_date,     ->(date) { where "date(started_at) = ?", date }
+  scope :by_teams,    ->(ht_ids, at_ids) { where home_team_id: ht_ids, away_team_id: at_ids }
+  scope :by_team,     ->(t_ids) { where "home_team_id = :id OR away_team_id = :id", id: t_ids }
 
   def first_half_home_score
     home_scores["period1"].to_i
