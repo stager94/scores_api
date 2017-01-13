@@ -36,8 +36,7 @@ module SofaScore
         end
 
         def last_week
-          binding.pry
-          if weeks[active_week_index+1] || Time.at(weeks[active_week_index+1]["weekStartDate"]).to_date > deadline
+          if weeks[active_week_index+1] && Time.at(weeks[active_week_index+1]["weekStartDate"]).to_date > deadline
             active_week
           else
             weeks[active_week_index+1]
