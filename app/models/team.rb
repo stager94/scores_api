@@ -15,7 +15,7 @@ class Team < ActiveRecord::Base
   has_attached_file :logo, styles: {
     original: ["150x150>", :png]
   }, default_url: "/images/default/teams/:style.png",
-  url: '/teams/logos/:style/:id.:extension'
+  url: '/system/teams/logos/:style/:id.:extension'
 
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
