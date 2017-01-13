@@ -10,7 +10,7 @@ module SofaScore
         end
 
         def execute
-          return if active_week.nil? || Time.at(active_week["weekStartDate"]).to_date > deadline
+          return if weeks.empty? || active_week.nil? || (Time.at(active_week["weekStartDate"]).to_date > deadline)
           json["weekMatches"]["tournaments"].each do |tournament_params|
             tournament_params["events"].each do |event_params|
               ::SofaScore::Football::Events::Creating.new(season_id, event_params).execute
@@ -36,7 +36,7 @@ module SofaScore
         end
 
         def last_week
-          if weeks.length == (active_week_index - 1)
+          if weeks.length == (active_week_index - 1) || Time.at(weeks[active_week_index+1]["weekStartDate"]).to_date > deadline
             active_week
           else
             weeks[active_week_index+1]
