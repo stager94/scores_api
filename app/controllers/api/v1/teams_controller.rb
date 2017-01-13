@@ -12,4 +12,9 @@ class Api::V1::TeamsController < Api::V1::BaseController
     end
   end
 
+  def show
+    team = Team.find params[:id]
+    render json: team
+  end
+
 end
