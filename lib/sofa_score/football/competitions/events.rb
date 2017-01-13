@@ -10,6 +10,7 @@ module SofaScore
         end
 
         def execute
+          return if active_week.nil? || Time.at(active_week["weekStartDate"]).to_date > deadline
           json["weekMatches"]["tournaments"].each do |tournament_params|
             tournament_params["events"].each do |event_params|
               ::SofaScore::Football::Events::Creating.new(season_id, event_params).execute
@@ -56,6 +57,10 @@ module SofaScore
 
         def json
           @_json ||= JSON.parse Net::HTTP.get_response(URI.parse(url)).body
+        end
+
+        def deadline
+          Time.now.beginning_of_week.to_date+2.weeks
         end
 
       end
