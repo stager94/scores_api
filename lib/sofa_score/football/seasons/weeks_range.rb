@@ -13,6 +13,14 @@ module SofaScore
           date_range rescue [-1, -1]
         end
 
+        def date_range
+          [weeks.first["weekStartDate"],weeks.last["weekEndDate"]]
+        end
+
+        def weeks
+          json["events"]["weeks"]
+        end
+
         private
 
         def season
@@ -25,14 +33,6 @@ module SofaScore
 
         def json
           JSON.parse Net::HTTP.get_response(URI.parse(url)).body
-        end
-
-        def date_range
-          [weeks.first["weekStartDate"],weeks.last["weekEndDate"]]
-        end
-
-        def weeks
-          json["events"]["weeks"]
         end
 
       end

@@ -5,7 +5,7 @@ module Sync
       include Sidekiq::Worker
       include Sidetiq::Schedulable
 
-      recurrence { monthly }
+      recurrence { weekly }
 
       def perform
         Competition.all.pluck(:id).each {|competition_id| Sync::Competitions::Events.perform_async(competition_id) }

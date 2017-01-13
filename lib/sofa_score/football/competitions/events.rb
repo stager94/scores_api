@@ -10,7 +10,6 @@ module SofaScore
         end
 
         def execute
-          return if weeks_range[0] == weeks_range[1] || weeks_range[0].nil?
           json["weekMatches"]["tournaments"].each do |tournament_params|
             tournament_params["events"].each do |event_params|
               ::SofaScore::Football::Events::Creating.new(season_id, event_params).execute
@@ -21,8 +20,30 @@ module SofaScore
 
         private
 
+        def weeks
+          @_weeks ||= SofaScore::Football::Seasons::WeeksRange.new(season_id).weeks
+        end
+
+        def active_week
+          current_timestamp = Time.now.to_i
+          week = weeks.find {|w| w["weekStartDate"] < current_timestamp && w["weekEndDate"] > current_timestamp }
+          week ||= weeks.select {|w| w["weekStartDate"] > current_timestamp }.first
+        end
+
+        def active_week_index
+          weeks.index active_week
+        end
+
+        def last_week
+          if weeks.length == (active_week_index - 1)
+            active_week
+          else
+            weeks[active_week_index+1]
+          end
+        end
+
         def weeks_range
-          [(season.events_last_load_timestamp || season.start_date).to_i, season.end_date.to_i]
+          [active_week["weekStartDate"], last_week["weekEndDate"]]
         end
 
         def season
