@@ -5,7 +5,7 @@ class Api::V1::TeamsController < Api::V1::BaseController
     if teams.any?
       render json: {
         count: teams.length,
-        resources: teams
+        resources: ActiveModel::Serializer::ArraySerializer.new(teams, each_serializer: TeamSerializer)
       }, status: 200
     else
       render json: { error: true }, status: 404
