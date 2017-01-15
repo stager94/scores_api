@@ -12,7 +12,7 @@ ActiveAdmin.register Event do
   filter :name
   filter :competition, as: :select
   filter :status_is_finished_eq, as: :boolean
-  filter :status_in_interrupted_eq, as: :boolean
+  filter :status_is_interrupted_eq, as: :boolean
   filter :status_in_process_eq, as: :boolean
 
   scope :today
