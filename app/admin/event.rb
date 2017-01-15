@@ -9,8 +9,11 @@ ActiveAdmin.register Event do
     link_to 'Sync info', get_info_admin_event_path(resource), method: :post
   end
 
+  filter :name
   filter :competition, as: :select
   filter :status_is_finished_eq, as: :boolean
+  filter :status_in_interrupted_eq, as: :boolean
+  filter :status_in_process_eq, as: :boolean
 
   scope :today
 
