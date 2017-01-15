@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115154745) do
+ActiveRecord::Schema.define(version: 20170115185604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,12 +75,15 @@ ActiveRecord::Schema.define(version: 20170115154745) do
     t.integer  "code"
     t.string   "description"
     t.string   "type"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.boolean  "is_finished",    default: false
     t.boolean  "is_interrupted", default: false
     t.boolean  "in_process",     default: false
+    t.string   "key",            default: "unknown"
   end
+
+  add_index "event_statuses", ["key"], name: "index_event_statuses_on_key", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "external_id"
