@@ -9,7 +9,7 @@ module Sync
 
       def perform
         Region.all.each do |region|
-          SofaScore::Football::Competitions::Synchronizer.new(lang: "en", region_id: region.id).run!
+          Sync::Regions::Competitions.perform_async(region.id)
         end
       end
 
