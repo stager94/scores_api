@@ -26,7 +26,7 @@ ActiveAdmin.register Event do
     id_column
     column :state do |e|
       if e.status.in_process?
-        status_tag e.status.type, :remove
+        status_tag e.status.type, :error
       elsif e.status.is_interrupted?
         status_tag e.status.type, :no
       elsif e.status.is_finished?
