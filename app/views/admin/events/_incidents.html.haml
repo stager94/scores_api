@@ -1,0 +1,8 @@
+- event.incidents.order(time: :asc).each do |incident|
+  - if incident.is_home?
+    %div
+      = raw "<b>#{incident.time}'</b> #{incident.incident_type} (#{incident.incident_class})"
+  - else
+    %div(style="text-align:right;")
+      = raw "#{incident.incident_type} (#{incident.incident_class}) <b>#{incident.time}'</b>"
+  %hr
