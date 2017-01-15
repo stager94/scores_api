@@ -55,7 +55,8 @@ module SofaScore
                        home_score: (params["homeScore"]["current"] rescue 0),
                        away_score: (params["awayScore"]["current"] rescue 0),
                        home_scores: params["homeScore"].is_a?(Array) ? {} : params["homeScore"],
-                       away_scores: params["awayScore"].is_a?(Array) ? {} : params["awayScore"]
+                       away_scores: params["awayScore"].is_a?(Array) ? {} : params["awayScore"],
+                       started_at: Time.at(params["startTimestamp"])
         end
 
       end
