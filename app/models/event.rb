@@ -10,12 +10,14 @@ class Event < ActiveRecord::Base
 
   has_many :incidents, dependent: :destroy
 
-  scope :today, ->{ by_date(Date.today) }
+  scope :today, ->{ with_integration.by_date(Date.today) }
   scope :live, ->{ past.in_process }
   scope :only_score, ->{ past.not_started }
-  scope :not_started, ->{ includes(:status).where(event_statuses: { in_process: false, is_finished: false, is_interrupted: false }) }
-  scope :in_process, ->{ includes(:status).where(event_statuses: { in_process: true }) }
-  scope :past, ->{ where "started_at < ?", Time.now }
+  scope :not_started, ->{ with_integration.includes(:status).where(event_statuses: { in_process: false, is_finished: false, is_interrupted: false }) }
+  scope :in_process, ->{ with_integration.includes(:status).where(event_statuses: { in_process: true }) }
+  scope :past, ->{ with_integration.where "started_at < ?", Time.now }
+  scope :with_integration, ->{ where.not external_id: nil }
+  scope :without_integration, ->{ where external_id: nil }
 
   scope :by_datetime, ->(time) { where started_at: time }
   scope :by_date,     ->(date) { where "date(started_at) = ?", date }

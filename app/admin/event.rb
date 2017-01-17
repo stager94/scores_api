@@ -20,6 +20,7 @@ ActiveAdmin.register Event do
   scope :live
   scope :only_score
   scope :not_started
+  scope :without_integration
 
   index do
     selectable_column

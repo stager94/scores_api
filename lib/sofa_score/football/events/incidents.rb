@@ -12,6 +12,7 @@ module SofaScore
         end
 
         def execute
+          failed and return if json["error"].present?
           json["incidents"].each {|incident_params| process_incident_with incident_params }
           ::SofaScore::Football::Events::ExtendedInfo.new(event_id, json["event"]).execute
         end
@@ -44,6 +45,10 @@ module SofaScore
 
         def process_incident_with(params)
           SofaScore::Football::Incidents::Saver.new(event_id, params).execute
+        end
+
+        def failed
+          event.update external_id: nil
         end
 
       end
