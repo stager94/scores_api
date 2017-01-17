@@ -1,17 +1,13 @@
 ActiveAdmin.register Region do
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+	member_action :sync_competitions, method: :post do
+    Sync::Regions::Competitions.perform_async params[:id]
+    redirect_to :back, notice: 'Job was queued succesfully!'
+  end
+
+  action_item only: :show do
+    link_to 'Sync competitions', sync_competitions_admin_region_path(resource), method: :post
+  end
 
 	index do
 		selectable_column
@@ -21,9 +17,6 @@ ActiveAdmin.register Region do
 		end
 		column :sport
 		column :title
-		# column :title_en
-		# column :title_de
-		# column :sofa_score_id
 		column :sofa_score_slug
 		column :competitions_count
 		actions
