@@ -14,8 +14,14 @@ class Competition < ActiveRecord::Base
   has_attached_file :flag, styles: { original: ["150x150>", :png]}, default_url: "/images/default/competitions/:style.png"
   validates_attachment_content_type :flag, content_type: /\Aimage\/.*\z/
 
+  after_create :sync_events
+
   def import_sofa_score_flag!
   	SofaScore::Football::Competitions::ImportFlag.new(competition_id: self.id).run!
+  end
+
+  def sync_events
+    Sync::Competitions::Events.perform_async self.id
   end
 
 end
