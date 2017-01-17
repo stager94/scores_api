@@ -9,6 +9,7 @@ ActiveAdmin.register Event do
     link_to 'Sync info', get_info_admin_event_path(resource), method: :post
   end
 
+  filter :id
   filter :name
   filter :competition, as: :select
   filter :status_is_finished_eq, as: :boolean
