@@ -16,6 +16,9 @@ ActiveAdmin.register Event do
   filter :status_in_process_eq, as: :boolean
 
   scope :today
+  scope :live
+  scope :only_score
+  scope :not_started
 
   # scope :finished
   # scope :not_finished
