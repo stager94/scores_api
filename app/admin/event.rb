@@ -20,10 +20,6 @@ ActiveAdmin.register Event do
   scope :only_score
   scope :not_started
 
-  # scope :finished
-  # scope :not_finished
-  # scope :live
-
   index do
     selectable_column
     id_column
@@ -39,6 +35,7 @@ ActiveAdmin.register Event do
       end
     end
     column :name
+    column :competition
     column :started_at
     column :score do |e|
       e.draw_full_score
