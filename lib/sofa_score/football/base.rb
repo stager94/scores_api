@@ -3,11 +3,12 @@ require 'watir'
 module SofaScore
 	module Football
 		class Base
-			
+
 			include Constants
 
 			def initialize(params = {})
 				params.each {|k, v| instance_variable_set "@#{k}", v }
+				@timer = 0
 				valid?
 			end
 
@@ -31,6 +32,7 @@ module SofaScore
 			end
 
 			def waiting(message = "Waiting..")
+				@timer += 1
 				p message
 			end
 

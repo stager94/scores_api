@@ -2,7 +2,7 @@ module SofaScore
 	module Football
 		module Competitions
 			class Synchronizer < SofaScore::Football::Base
-				
+
 				attr_accessor :lang, :region_id
 
 				LINKS_SELECTOR = ".event-list-main > a.js-link"
@@ -15,7 +15,7 @@ module SofaScore
 				def run!
 					goto build_url
 
-					waiting while links.length == 0
+					waiting while links.length == 0 && @timer < 500
 					export!
 				end
 

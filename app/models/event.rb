@@ -10,8 +10,12 @@ class Event < ActiveRecord::Base
 
   has_many :incidents, dependent: :destroy
 
-  # scope :live, -> { includes(:status).where("started_at > ? AND statuses.type NOT IN ('finished', '')", Time.now) }
   scope :today, ->{ by_date(Date.today) }
+  scope :live, ->{ past.in_process }
+  scope :only_score, ->{ past.not_started }
+  scope :not_started, ->{ includes(:status).where(event_statuses: { in_process: false, is_finished: false, is_interrupted: false }) }
+  scope :in_process, ->{ includes(:status).where(event_statuses: { in_process: true }) }
+  scope :past, ->{ where "started_at < ?", Time.now }
 
   scope :by_datetime, ->(time) { where started_at: time }
   scope :by_date,     ->(date) { where "date(started_at) = ?", date }
