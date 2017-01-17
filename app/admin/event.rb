@@ -9,6 +9,13 @@ ActiveAdmin.register Event do
     link_to 'Sync info', get_info_admin_event_path(resource), method: :post
   end
 
+  collection_action :sync_by_date, method: :post do
+    SofaScore::Football::Competitions::ByDate.new(date: params[:data]).execute
+    redirect_to collection_path, notice: "Синхронизация инициализирована"
+  end
+
+  sidebar :by_date, partial: "by_date"
+
   filter :id
   filter :name
   filter :competition, as: :select
