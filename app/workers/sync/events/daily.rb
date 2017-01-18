@@ -5,11 +5,11 @@ module Sync
       include Sidekiq::Worker
       include Sidetiq::Schedulable
 
-      recurrence { daily }
+      recurrence { hourly(2) }
 
       def perform
-        (Date.today..Date.today+2.weeks).each do |date|
-          SofaScore::Football::Competitions::ByDate.new(date: date).execute
+        (Date.today..Date.today+2.days).each do |date|
+          SofaScore::Football::Events::ByDate.new(date: date).execute
         end
       end
 
