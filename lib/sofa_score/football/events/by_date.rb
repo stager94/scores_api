@@ -41,7 +41,7 @@ module SofaScore
           competition_node = header.css(".cell__content:nth-child(2) a")[0]
           competition_id = competition_node.attr("href").split("/")[-1].to_i
 
-          competition = region.competitions.find_by(sofa_score_id: competition_id)
+          competition = Competition.find_by(sofa_score_id: competition_id)
           return unless competition
 
           Sync::Competitions::Events.perform_async competition.id
