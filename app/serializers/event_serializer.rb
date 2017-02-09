@@ -9,8 +9,8 @@ class EventSerializer < ActiveModel::Serializer
   belongs_to :status
 
   def first_goal
-    return if incidents.where(incident_type: "goal").order(time: :asc).count == 0
-    incidents.where(incident_type: "goal").order(time: :asc)[0].is_home? ? "home" : "away"
+    return if object.incidents.where(incident_type: "goal").order(time: :asc).count == 0
+    object.incidents.where(incident_type: "goal").order(time: :asc)[0].is_home? ? "home" : "away"
   end
 
 end
