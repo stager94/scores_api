@@ -62,6 +62,7 @@ ActiveAdmin.register Event do
       row :away_scores
       row :home_team
       row :away_team
+      row :protocol
     end
   end
 
