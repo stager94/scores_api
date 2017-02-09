@@ -21,6 +21,11 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
+  def show
+    event = Event.find params[:id]
+    render json: event
+  end
+
   private
 
   def find_by_existing_teams
