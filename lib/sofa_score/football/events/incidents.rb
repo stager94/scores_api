@@ -57,8 +57,8 @@ module SofaScore
           {
             home_corners_count: json["statistics"]["homeCornerKicks"],
             away_corners_count: json["statistics"]["awayCornerKicks"],
-            home_yellow_cards: json["statistics"]["homeYellowCards"],
-            away_yellow_cards: json["statistics"]["awayYellowCards"]
+            home_yellow_cards_count: json["statistics"]["homeYellowCards"],
+            away_yellow_cards_count: json["statistics"]["awayYellowCards"]
           }
         end
 
