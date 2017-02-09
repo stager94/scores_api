@@ -10,6 +10,15 @@ class Event < ActiveRecord::Base
 
   has_many :incidents, dependent: :destroy
 
+  PROTOCOL_FIELDS = %w(
+    home_yellow_cards_count away_yellow_cards_count
+    home_corners_count away_corners_count
+  )
+
+  PROTOCOL_FIELDS.each do |param|
+    store_accessor :protocol, param
+  end
+
   scope :today, ->{ with_integration.by_date(Date.today) }
   scope :live, ->{ past.in_process }
   scope :only_score, ->{ past.not_started }

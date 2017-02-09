@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115185604) do
+ActiveRecord::Schema.define(version: 20170209044336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20170115185604) do
     t.integer  "competition_id"
     t.integer  "home_team_id"
     t.integer  "away_team_id"
+    t.hstore   "protocol"
   end
 
   add_index "events", ["away_team_id"], name: "index_events_on_away_team_id", using: :btree

@@ -15,6 +15,7 @@ module SofaScore
           return unless event.external_id
           failed and return if json["error"].present?
           json["incidents"].each {|incident_params| process_incident_with incident_params }
+          event.update protocol_information if json["statistics"].present?
           ::SofaScore::Football::Events::ExtendedInfo.new(event_id, json["event"]).execute
         end
 
@@ -50,6 +51,15 @@ module SofaScore
 
         def failed
           event.update external_id: nil
+        end
+
+        def protocol_information
+          {
+            home_corners_count: json["statistics"]["homeCornerKicks"],
+            away_corners_count: json["statistics"]["awayCornerKicks"],
+            home_yellow_cards: json["statistics"]["homeYellowCards"],
+            away_yellow_cards: json["statistics"]["awayYellowCards"]
+          }
         end
 
       end
