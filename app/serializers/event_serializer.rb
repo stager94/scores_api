@@ -6,5 +6,6 @@ class EventSerializer < ActiveModel::Serializer
   belongs_to :away_team
   belongs_to :venue
   belongs_to :referee
+  belongs_to :status
 
 end
