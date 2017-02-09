@@ -1,5 +1,6 @@
 class ChangeProtocolDefaultInEvents < ActiveRecord::Migration
   def change
-    change_column_default :events, :protocol, ''
+    remove_column :events, :protocol
+    add_column :events, :protocol, :hstore, default: ''
   end
 end
