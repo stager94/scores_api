@@ -9,13 +9,21 @@ module ScoresApi
       end
 
       def execute
-        WebHook.all.each {|webhook| Net::HTTP.post_form(URI.parse(webhook.url), info) }
+        WebHook.all.each {|webhook| process_to webhook }
       end
 
       private
 
       def info
-        EventSerializer.new(event).as_json
+        EventSerializer.new event
+      end
+
+      def process_to(webhook)
+        uri = URI webhook.url
+        http = Net::HTTP.new uri.host, uri.port
+        req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
+        req.body = info.to_json
+        http.request req
       end
 
     end
