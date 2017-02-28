@@ -5,8 +5,17 @@ ActiveAdmin.register Event do
     redirect_to :back, notice: 'Job was queued succesfully!'
   end
 
+  member_action :send_webhooks, method: :post do
+    ScoresApi::WebHooks::Send.new(Event.find(params[:id])).execute
+    redirect_to :back, notice: 'WebHooks was sended succesfully!'
+  end
+
   action_item only: :show do
     link_to 'Sync info', get_info_admin_event_path(resource), method: :post
+  end
+
+  action_item only: :show do
+    link_to 'Send Webhook', send_webhooks_admin_event_path(resource), method: :post
   end
 
   collection_action :sync_by_date, method: :post do
