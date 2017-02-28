@@ -24,6 +24,7 @@ module SofaScore
         end
 
         def update_season
+          return unless params[:season]
           event.season.update name: params["season"]["name"],
                               slug: params["season"]["slug"]
         end
