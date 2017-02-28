@@ -46,4 +46,8 @@ class Event < ActiveRecord::Base
     "#{home_score}:#{away_score} (#{first_half_home_score}:#{first_half_away_score})"
   end
 
+  def process_webhook
+    ScoresApi::WebHooks::Send.new(self).execute if home_score_changed? || away_score_changed? || event_status_id_changed?
+  end
+
 end

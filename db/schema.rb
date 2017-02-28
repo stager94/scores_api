@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209051043) do
+ActiveRecord::Schema.define(version: 20170228012954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -251,6 +251,13 @@ ActiveRecord::Schema.define(version: 20170209051043) do
   end
 
   add_index "venues", ["external_id"], name: "index_venues_on_external_id", using: :btree
+
+  create_table "web_hooks", force: :cascade do |t|
+    t.string   "url"
+    t.boolean  "is_enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   add_foreign_key "competitions", "regions"
   add_foreign_key "events", "competitions"
