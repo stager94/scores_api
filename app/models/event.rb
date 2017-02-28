@@ -10,6 +10,8 @@ class Event < ActiveRecord::Base
 
   has_many :incidents, dependent: :destroy
 
+  after_update :process_webhooks
+
   PROTOCOL_FIELDS = %w(
     home_yellow_cards_count away_yellow_cards_count
     home_corners_count away_corners_count
@@ -46,7 +48,7 @@ class Event < ActiveRecord::Base
     "#{home_score}:#{away_score} (#{first_half_home_score}:#{first_half_away_score})"
   end
 
-  def process_webhook
+  def process_webhooks
     ScoresApi::WebHooks::Send.new(self).execute if home_score_changed? || away_score_changed? || event_status_id_changed?
   end
 
