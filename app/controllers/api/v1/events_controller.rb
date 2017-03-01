@@ -1,5 +1,3 @@
-require 'pry-remote'
-
 class Api::V1::EventsController < ApplicationController
 
   def find
@@ -32,8 +30,7 @@ class Api::V1::EventsController < ApplicationController
 
   def info
     ids = params[:ids].split(",")
-    events = Event.where id: params[:ids]
-    binding.remote_pry
+    events = Event.where id: ids
     render json: {
       events: ActiveModel::SerializableResource.new(events, each_serializer: EventSerializer),
       success: true,
