@@ -35,6 +35,7 @@ gem "paperclip", "~> 5.0.0"
 gem 'haml'
 gem 'nokogiri'
 gem 'pry'
+gem 'pry-remote'
 gem 'counter_culture', '~> 0.1.33'
 
 gem 'sinatra'

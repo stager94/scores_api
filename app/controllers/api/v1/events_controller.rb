@@ -31,6 +31,7 @@ class Api::V1::EventsController < ApplicationController
   def info
     ids = params[:ids].split(",")
     events = Event.where id: params[:ids]
+    binding.remote_pry
     render json: {
       events: ActiveModel::SerializableResource.new(events, each_serializer: EventSerializer),
       success: true,
