@@ -29,6 +29,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def info
+    ids = params[:ids].split(",")
     events = Event.where id: params[:ids]
     render json: {
       events: ActiveModel::SerializableResource.new(events, each_serializer: EventSerializer),
