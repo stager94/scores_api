@@ -28,6 +28,15 @@ class Api::V1::EventsController < ApplicationController
     render json: event
   end
 
+  def info
+    events = Event.where id: params[:ids]
+    render json: {
+      events: ActiveModel::SerializableResource.new(events, each_serializer: EventSerializer),
+      success: true,
+      count: events.count
+    }
+  end
+
   private
 
   def find_by_existing_teams
