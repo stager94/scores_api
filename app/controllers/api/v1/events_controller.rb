@@ -2,6 +2,8 @@ class Api::V1::EventsController < ApplicationController
 
   def find
     events = case params[:type]
+    when "by_sofa_score_id"
+      find_by_sofa_score_id
     when "by_existing_team"
       find_by_existing_team
     when "by_existing_teams"
@@ -49,6 +51,10 @@ class Api::V1::EventsController < ApplicationController
     datetime = Time.parse params[:date]
 
     Event.by_datetime(datetime).by_teams(team1, team2)
+  end
+
+  def find_by_sofa_score_id
+    Event.where external_id: params[:sofa_score_id]
   end
 
 end
