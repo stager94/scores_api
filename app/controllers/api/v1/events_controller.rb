@@ -1,3 +1,5 @@
+require 'pry-remote'
+
 class Api::V1::EventsController < ApplicationController
 
   def find
