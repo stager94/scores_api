@@ -1,4 +1,4 @@
-ActiveAdmin.register WebHook do
+ActiveAdmin.register WebHook::Log do
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -13,5 +13,19 @@ ActiveAdmin.register WebHook do
 #   permitted
 # end
 
+
+  index do
+    selectable_column
+    id_column
+    column :status
+    column :resource do |l|
+      l.resource.url
+    end
+    column :key do |l|
+      l.params["id"]
+    end
+    column :created_at
+    actions
+  end
 
 end

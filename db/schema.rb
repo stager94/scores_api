@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228012954) do
+ActiveRecord::Schema.define(version: 20170302194252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,6 +252,25 @@ ActiveRecord::Schema.define(version: 20170228012954) do
 
   add_index "venues", ["external_id"], name: "index_venues_on_external_id", using: :btree
 
+  create_table "web_hook_logs", force: :cascade do |t|
+    t.integer  "web_hook_resource_id"
+    t.json     "params"
+    t.text     "response"
+    t.integer  "status"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "web_hook_logs", ["web_hook_resource_id"], name: "index_web_hook_logs_on_web_hook_resource_id", using: :btree
+
+  create_table "web_hook_resources", force: :cascade do |t|
+    t.string   "url"
+    t.string   "title"
+    t.boolean  "is_enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "web_hooks", force: :cascade do |t|
     t.string   "url"
     t.boolean  "is_enabled"
@@ -271,4 +290,5 @@ ActiveRecord::Schema.define(version: 20170228012954) do
   add_foreign_key "regions", "sports"
   add_foreign_key "seasons", "competitions"
   add_foreign_key "teams", "stadia"
+  add_foreign_key "web_hook_logs", "web_hook_resources"
 end
