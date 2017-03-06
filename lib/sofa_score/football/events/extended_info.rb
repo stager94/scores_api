@@ -11,7 +11,7 @@ module SofaScore
         end
 
         def execute
-          update_season if event.season.slug.nil?
+          update_season if event.season && event.season.slug.nil?
           event.update venue_id: venue.try(:id) if event.venue_id.nil?
           event.update referee_id: referee.try(:id) if event.referee_id.nil?
           update_event
