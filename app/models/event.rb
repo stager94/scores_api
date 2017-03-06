@@ -35,6 +35,8 @@ class Event < ActiveRecord::Base
   scope :by_teams,    ->(ht_ids, at_ids) { where home_team_id: ht_ids, away_team_id: at_ids }
   scope :by_team,     ->(t_ids) { where "home_team_id = :id OR away_team_id = :id", id: t_ids }
 
+  validates_uniqueness_of :external_id
+
   def first_half_home_score
     home_scores["period1"].to_i
   end

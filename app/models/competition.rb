@@ -14,6 +14,8 @@ class Competition < ActiveRecord::Base
   has_attached_file :flag, styles: { original: ["150x150>", :png]}, default_url: "/images/default/competitions/:style.png"
   validates_attachment_content_type :flag, content_type: /\Aimage\/.*\z/
 
+  validates_uniqueness_of :sofa_score_id
+
   after_create :sync_events
 
   def import_sofa_score_flag!

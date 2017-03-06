@@ -72,11 +72,24 @@ ActiveAdmin.register Event do
       row :home_team
       row :away_team
       row :protocol
+      row :status do |e|
+        if e.status.in_process?
+          status_tag e.status.key.humanize, :error
+        elsif e.status.is_interrupted?
+          status_tag e.status.type, :no
+        elsif e.status.is_finished?
+          status_tag e.status.type, :yes
+        else
+          status_tag e.status.type
+        end
+      end
+      row :created_at
     end
   end
 
   sidebar :info, only: :show do
     attributes_table do
+      row :status
       row :venue
       row :referee
       row :season

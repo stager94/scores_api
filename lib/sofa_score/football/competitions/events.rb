@@ -13,7 +13,7 @@ module SofaScore
           return if !weeks || weeks.empty? || !active_week || (Time.at(active_week["weekStartDate"]).to_date > deadline)
           json["weekMatches"]["tournaments"].each do |tournament_params|
             tournament_params["events"].each do |event_params|
-              ::SofaScore::Football::Events::Creating.new(season_id, event_params).execute
+              ::SofaScore::Football::Events::Creating.new(season.competition_id, season_id, event_params).execute
             end
           end
           season.update events_last_load_timestamp: weeks_range[1]

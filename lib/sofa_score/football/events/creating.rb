@@ -3,9 +3,10 @@ module SofaScore
     module Events
       class Creating < SofaScore::Football::Events::Base
 
-        attr_reader :season_id, :params
+        attr_reader :competition_id, :season_id, :params
 
-        def initialize(season_id, params)
+        def initialize(competition_id, season_id, params)
+          @competition_id = competition_id
           @season_id = season_id
           @params    = params
         end
@@ -19,15 +20,12 @@ module SofaScore
               Event.create create_params
             end
           rescue Exception => e
+            binding.pry
             return
           end
         end
 
         private
-
-        def season
-          @_season ||= Season.find season_id
-        end
 
         def external_id
           params["id"]
@@ -61,7 +59,7 @@ module SofaScore
             name: params["name"],
             started_at: Time.at(params["startTimestamp"]).utc,
             season_id: season_id,
-            competition_id: season.competition_id,
+            competition_id: competition_id,
             home_team_id: home_team.id,
             away_team_id: away_team.id
           }
