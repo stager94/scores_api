@@ -13,12 +13,14 @@ module SofaScore
 
         def execute
           return unless event.external_id
-          p json
-          failed and return if json["error"].present?
 
-          json["incidents"].each {|incident_params| process_incident_with incident_params }
-          event.update protocol_information if json["statistics"].present?
-          ::SofaScore::Football::Events::ExtendedInfo.new(event_id, json["event"]).execute
+          if json["error"].present?
+            failed
+          else
+            json["incidents"].each {|incident_params| process_incident_with incident_params }
+            event.update protocol_information if json["statistics"].present?
+            ::SofaScore::Football::Events::ExtendedInfo.new(event_id, json["event"]).execute
+          end
         end
 
         private
