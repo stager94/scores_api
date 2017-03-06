@@ -5,7 +5,7 @@ module Sync
       include Sidekiq::Worker
 
       def perform(date, region_slug)
-        SofaScore::Football::Events::AllByDate.new(date: date, region_slug: region_slug).execute
+        SofaScore::Football::Events::AllByDate.new(date: Date.parse(date), region_slug: region_slug).execute
       end
 
     end
