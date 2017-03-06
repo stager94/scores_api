@@ -189,6 +189,7 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    mock_redis (0.13.2)
     money (6.7.1)
       i18n (>= 0.6.4, <= 0.7.0)
       sixarm_ruby_unaccent (>= 1.1.1, < 2)
@@ -290,6 +291,9 @@ GEM
       json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
       redis-namespace (~> 1.5, >= 1.5.2)
+    sidekiq-unique-jobs (3.0.2)
+      mock_redis
+      sidekiq (>= 2.6)
     sidetiq (0.6.0)
       celluloid (>= 0.14.1)
       ice_cube (~> 0.12.0)
@@ -384,6 +388,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq (= 3.4.2)
+  sidekiq-unique-jobs
   sidetiq (= 0.6.0)
   sinatra
   spring
