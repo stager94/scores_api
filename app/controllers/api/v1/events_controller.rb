@@ -64,7 +64,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def find_by_sofa_score_id
-    Event.where external_id: params[:sofa_score_id]
+    Event.where id: params[:sofa_score_id]
   end
 
 end
