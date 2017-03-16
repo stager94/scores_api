@@ -1,4 +1,5 @@
 # SofaScore::Football::Events::Incidents.new(7242763).execute
+require 'net/http'
 
 module SofaScore
   module Football
