@@ -12,6 +12,7 @@ module SofaScore
 
 					waiting while links.length == 0
 					export!
+					browser.close
 				end
 
 			private

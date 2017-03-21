@@ -29,6 +29,7 @@ module SofaScore
               season.update dates_loaded: true
             end
           end
+          browser.close
         end
 
         private

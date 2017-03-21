@@ -19,6 +19,7 @@ module SofaScore
 
           waiting while headers.length == 0 && @timer < 500
           export!
+          browser.close
         end
 
         private

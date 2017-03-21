@@ -2,7 +2,7 @@ module SofaScore
 	module Football
 		module Regions
 			class Synchronizer < SofaScore::Football::Base
-				
+
 				attr_accessor :lang
 
 				LINKS_SELECTOR = ".leagues ul.leagues__list a.leagues__link"
@@ -17,6 +17,7 @@ module SofaScore
 
 					waiting while links.length == 0
 					export!
+					browser.close
 				end
 
 			private
