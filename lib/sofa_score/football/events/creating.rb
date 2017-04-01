@@ -13,7 +13,7 @@ module SofaScore
 
         def execute
           begin
-            event = Event.where(external_id: external_id).count > 0
+            event = Event.where(external_id: external_id).first
             if event
               event.update update_params
             else
