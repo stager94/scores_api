@@ -1,5 +1,8 @@
 ActiveAdmin.register Team do
 
+	filter :title_en
+	filter :sofa_score_id
+
 	index do
 		selectable_column
 		id_column
