@@ -1,6 +1,6 @@
 class EventSerializer < ActiveModel::Serializer
 
-  attributes :id, :name, :protocol, :home_score, :away_score, :home_scores, :away_scores, :first_goal
+  attributes :id, :name, :protocol, :home_score, :away_score, :home_scores, :away_scores, :first_goal, :source
 
   belongs_to :home_team
   belongs_to :away_team
@@ -11,6 +11,10 @@ class EventSerializer < ActiveModel::Serializer
   def first_goal
     return if object.incidents.where(incident_type: "goal").order(time: :asc).count == 0
     object.incidents.where(incident_type: "goal").order(time: :asc)[0].is_home? ? "home" : "away"
+  end
+
+  def source
+    "sofa_score"
   end
 
 end
