@@ -3,9 +3,9 @@ module Sync
     class AllByDate
 
       include Sidekiq::Worker
-      include Sidetiq::Schedulable
+      # include Sidetiq::Schedulable
 
-      recurrence { daily.hour_of_day([0]) }
+      # recurrence { daily.hour_of_day([0]) }
 
       def perform
         [Date.today+1.day, Date.today+4.days, Date.today+7.days].each do |date|

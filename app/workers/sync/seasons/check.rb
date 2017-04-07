@@ -3,9 +3,9 @@ module Sync
     class Check
 
       include Sidekiq::Worker
-      include Sidetiq::Schedulable
+      # include Sidetiq::Schedulable
 
-      recurrence { daily.hour_of_day(6) }
+      # recurrence { daily.hour_of_day(6) }
 
       def perform
         Season.where(is_active: true).where("end_date <= ?", Date.today).pluck(:competition_id).each do |cid|

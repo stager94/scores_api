@@ -2,9 +2,9 @@ module Sync
   class EventsInfo
 
     include Sidekiq::Worker
-    include Sidetiq::Schedulable
+    # include Sidetiq::Schedulable
 
-    recurrence { hourly.minute_of_hour(*(0..59).step(1).to_a) }
+    # recurrence { hourly.minute_of_hour(*(0..59).step(1).to_a) }
 
     def perform
       Event.live.each {|event| Sync::Events::Info.perform_async event.id }

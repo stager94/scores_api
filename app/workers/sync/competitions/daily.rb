@@ -3,9 +3,9 @@ module Sync
     class Daily
 
       include Sidekiq::Worker
-      include Sidetiq::Schedulable
+      # include Sidetiq::Schedulable
 
-      recurrence { daily }
+      # recurrence { daily }
 
       def perform
         (Date.today..Date.today+2.weeks).each do |date|

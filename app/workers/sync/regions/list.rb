@@ -3,9 +3,9 @@ module Sync
     class List
 
       include Sidekiq::Worker
-      include Sidetiq::Schedulable
+      # include Sidetiq::Schedulable
 
-      recurrence { daily }
+      # recurrence { daily }
 
       def perform
         SofaScore::Football::Regions::Synchronizer.new(lang: "en").run!

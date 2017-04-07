@@ -3,9 +3,9 @@ module Sync
     class List
 
       include Sidekiq::Worker
-      include Sidetiq::Schedulable
+      # include Sidetiq::Schedulable
 
-      recurrence { daily }
+      # recurrence { daily }
 
       def perform
         Region.all.each do |region|

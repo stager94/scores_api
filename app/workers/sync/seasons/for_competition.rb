@@ -3,9 +3,9 @@ module Sync
     class ForCompetition
 
       include Sidekiq::Worker
-      include Sidetiq::Schedulable
+      # include Sidetiq::Schedulable
 
-      recurrence { monthly }
+      # recurrence { monthly }
 
       def perform(competition_id)
         SofaScore::Football::Seasons::Synchronizer.new(competition_id).execute
